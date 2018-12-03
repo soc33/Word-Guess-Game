@@ -25,20 +25,20 @@ document.onkeyup = function (event) {
     var userGuess = event.key;
     if (guessesLeft != 1) {
         if (computerWord.indexOf(userGuess) > -1) {
-            for (var i = 0; i < computerWord.length; i++) {
-                // this part works
-                if (computerWord.charAt(i) === userGuess) {
-                    // this part doesn't
-                    var newJ = "";
-                    if (wordText.textContent === j) {
-                        newJ = j.substr(0, i) + j.replace(j.charAt(i), computerWord.charAt(i)) + j.substr(i, j.length -1);
-                        wordText.textContent = newJ;
-                    } else {
-                        var newJ2 = newJ.substr(0, i) + j.replace(j.charAt(i), computerWord.charAt(i)) + j.substr(i, j.length -1);
-                        wordText.textContent = newJ2;
+            if (chosenWord.indexOf(keyString) != -1){ // if the character is found
+                for (var i = 0; i < wordLength; i ++){ // loop on all characters
+                    if (chosenWord[i] == keyString) { // if this is an occurance
+                        progressWord[i] = chosenWord[i];
                     }
-                    //not sure if this works yet as I cannot win yet...                    
-                    if (newJ === computerWord) {
+                }
+            }else{
+             // wrong choice
+            }
+            //for (var i = 0; i < computerWord.length; i++) {
+              //  if (computerWord.charAt(i) === userGuess) {
+                //    var letter = computerWord.charAt(i);
+                  //  j.prototype.CharAt(i) = letter;
+                    if (j === computerWord) {
                         wins++;
                         winsText.textContent = wins;
                         computerWord = computerChoices[Math.floor(Math.random() * computerChoices.length)];
