@@ -1,0 +1,21 @@
+body, html {
+    background-image: url("../images/bananas.png");
+    text-align: center;
+}
+h1 {
+    font-family: 'Kumar One Outline', cursive;
+}    
+h2 {
+    font-family: 'Gamja Flower', cursive;
+}
+p {
+    font-family: 'Ranga', cursive;
+}
+.jumbotron {
+    background-color: transparent;
+}
+.game {
+    border: 3px dashed darkblue;
+}
+    
+
