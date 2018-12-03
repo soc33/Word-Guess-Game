@@ -26,10 +26,19 @@ document.onkeyup = function (event) {
     if (guessesLeft != 1) {
         if (computerWord.indexOf(userGuess) > -1) {
             for (var i = 0; i < computerWord.length; i++) {
+                // this part works
                 if (computerWord.charAt(i) === userGuess) {
-                    var letter = computerWord.charAt(i);
-                    j.prototype.CharAt(i) = letter;
-                    if (j === computerWord) {
+                    // this part doesn't
+                    var newJ = "";
+                    if (wordText.textContent === j) {
+                        newJ = j.substr(0, i) + j.replace(j.charAt(i), computerWord.charAt(i)) + j.substr(i, j.length -1);
+                        wordText.textContent = newJ;
+                    } else {
+                        var newJ2 = newJ.substr(0, i) + j.replace(j.charAt(i), computerWord.charAt(i)) + j.substr(i, j.length -1);
+                        wordText.textContent = newJ2;
+                    }
+                    //not sure if this works yet as I cannot win yet...                    
+                    if (newJ === computerWord) {
                         wins++;
                         winsText.textContent = wins;
                         computerWord = computerChoices[Math.floor(Math.random() * computerChoices.length)];
@@ -40,6 +49,7 @@ document.onkeyup = function (event) {
                     }
                 }
             }
+            //this part works!
         } else {
             guessesLeft--;
             guessesLeftText.textContent = guessesLeft;
@@ -47,7 +57,7 @@ document.onkeyup = function (event) {
             guessedLettersText.textContent = guessedLetters;
         }
     } else {
-
+// this part works too!!
         losses++;
         lossesText.textContent = ("Losses: " + losses);
         guessedLetters = [];
