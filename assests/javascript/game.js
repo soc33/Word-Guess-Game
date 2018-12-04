@@ -12,6 +12,7 @@ var lossesText = document.getElementById("losses");
 var wordText = document.getElementById("word");
 var guessesLeftText = document.getElementById("guessesLeft");
 var guessedLettersText = document.getElementById("lettersUsed");
+var recipeLinks = document.getElementById("recipeLinks")
 
 // global variables to be used in functions
 var computerChoices = ["tomato", "apple", "carrot", "watermelon", "pear"];
@@ -20,7 +21,7 @@ var computerWord = "tomato";
 var userGuess = "";
 var pictures = ["assests/images/tomatoes.jpg", "assests/images/apples.jpg", "assests/images/colorfulcarrots.jpg", "assests/images/Watermelon.jpg", "assests/images/pears.jpg", "assests/images/winner.jpg"];
 var flavorText = ["Tomato soup is my favorite soup!", "Cinnamon roll apple pie is the best thing you've ever had!", "The best carrots are multicolored", "Watermelon is the best fruit for centerpieces", "Pears are best served cold", "You solved all the words! Refresh the page to play again."];
-var recipes = [];
+var recipes = ["assests/recipes/tomato.html", "assests/recipes/apple.html", "assests/recipes/carrots.html", "assests/recipes/watermelon.html", "assests/recipes/pear.html"];
 var usedWords = [];
 
 // function to get new word for blanks
@@ -77,6 +78,8 @@ document.onkeyup = function (event) {
                         winsText.textContent = ("Wins: " + wins);
                         picture.src=pictures[computerChoices.indexOf(computerWord)];
                         answerText.textContent = flavorText[computerChoices.indexOf(computerWord)];
+                        recipeLinks.href = recipes[computerChoices.indexOf(computerWord)];
+                        recipeLinks.textContent = ("Sample Recipe");
                         usedWords.push(computerWord);
                         resetGame();
                         if (wins === 5) {
