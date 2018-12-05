@@ -2,20 +2,25 @@ body, html {
     background-image: url("../images/bananas.png");
     text-align: center;
 }
-h1 {
-    font-family: 'Kumar One Outline', cursive;
-}    
-h2 {
-    font-family: 'Gamja Flower', cursive;
-}
+
 p {
     font-family: 'Ranga', cursive;
+    font-size: 26px;
 }
 .jumbotron {
-    background-color: transparent;
+    background-color: teal;
+    opacity: 0.8;
 }
 .game {
     border: 3px dashed darkblue;
 }
-    
-
+.page-footer {
+    background-color: teal;
+    opacity: 0.8;
+}
+a {
+    color: yellowgreen;
+}
+footer {
+    color: yellow;
+}
