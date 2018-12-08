@@ -12,7 +12,8 @@ var lossesText = document.getElementById("losses");
 var wordText = document.getElementById("word");
 var guessesLeftText = document.getElementById("guessesLeft");
 var guessedLettersText = document.getElementById("lettersUsed");
-var recipeLinks = document.getElementById("recipeLinks")
+var recipeLinks = document.getElementById("recipeLinks");
+var music = document.getElementById("fruitSalad");
 
 // global variables to be used in functions
 var computerChoices = ["tomato", "apple", "carrot", "watermelon", "pear"];
@@ -25,6 +26,19 @@ var recipes = ["assests/recipes/tomato.html", "assests/recipes/apple.html", "ass
 var recipeText = ["Creamy Tomato Soup", "Cinnamon Roll Apple Pie", "Facts About Colorful Carrots", "Watermelon Centerpiece Tips", "Weird Pear Recipes You Didn't Know About", "All The Recipes!"]
 var usedWords = [];
 
+// function to toggle if it should pause or play on click
+function togglePlay() {
+    if (music.paused) {
+        music.play();
+    } else {
+        music.pause();
+    }
+}
+// function to play music
+// music.onclick = function() {
+//     togglePlay();
+// }
+
 // function to get new word for blanks
 getnewword = function () {
     computerWord = computerChoices[Math.floor(Math.random() * computerChoices.length)];
@@ -34,6 +48,9 @@ getnewword = function () {
         j += "_";
     }
     wordText.textContent = j;
+    if (usedWords.indexOf(computerWord) != -1) {
+        getnewword();
+    }
 };
 
 // function to replace the blank with the guessed letter
@@ -51,6 +68,13 @@ setCharacter = function () {
     wordText.textContent = j;
 };
 
+// funciton to change page based on correct word guess
+userWon = function () {
+    picture.src = pictures[computerChoices.indexOf(computerWord)];
+    answerText.textContent = flavorText[computerChoices.indexOf(computerWord)];
+    recipeLinks.href = recipes[computerChoices.indexOf(computerWord)];
+    recipeLinks.textContent = recipeText[computerChoices.indexOf(computerWord)];
+}
 //function to "reset" the game
 resetGame = function () {
     guessedLetters = [];
@@ -58,9 +82,6 @@ resetGame = function () {
     guessesLeft = 10;
     guessesLeftText.textContent = guessesLeft;
     getnewword();
-    if (usedWords.indexOf(computerWord) != -1) {
-        getnewword();
-    }
 }
 
 //to get a word upon page load
@@ -77,17 +98,15 @@ document.onkeyup = function (event) {
                     if (j === computerWord) {
                         wins++;
                         winsText.textContent = ("Wins: " + wins);
-                        picture.src=pictures[computerChoices.indexOf(computerWord)];
-                        answerText.textContent = flavorText[computerChoices.indexOf(computerWord)];
-                        recipeLinks.href = recipes[computerChoices.indexOf(computerWord)];
-                        recipeLinks.textContent = recipeText[computerChoices.indexOf(computerWord)];
-                        usedWords.push(computerWord);
-                        resetGame();
-                        if (wins === 5) {
-                            picture.src=pictures[pictures.length -1];
-                            answerText.textContent = flavorText[flavorText.length -1];
-                            recipeLinks.href = recipes[recipes.length -1];
-                            recipeLinks.textContent = recipeText[recipeText.length -1];
+                        if (wins !== 5) {
+                            usedWords.push(computerWord);
+                            userWon();
+                            resetGame();
+                        } else {
+                            picture.src = pictures[pictures.length - 1];
+                            answerText.textContent = flavorText[flavorText.length - 1];
+                            recipeLinks.href = recipes[recipes.length - 1];
+                            recipeLinks.textContent = recipeText[recipeText.length - 1];
                         }
                     }
                 } else {//this part works!
