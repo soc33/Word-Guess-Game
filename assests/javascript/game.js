@@ -122,10 +122,10 @@ document.onkeyup = function (event) {
                 resetGame();
             };
         } else {
-            alert("You've already guessed that letter!");
+            // alert("You've already guessed that letter!");
         }
     } else {
-        alert("That is not a valid choice!");
+        // alert("That is not a valid choice!");
     }
 }
 
